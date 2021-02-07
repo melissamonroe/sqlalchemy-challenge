@@ -2,39 +2,39 @@
 
 ![surfs-up.png](Images/surfs-up.png)
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following outlines what you need to do.
+Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. 
 
 ## Step 1 - Climate Analysis and Exploration
 
-To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+Python and SQLAlchemy were used to do basic climate analysis and data exploration of the hawaii climate database. All of the following analysis were be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
+* SQLAlchemy `create_engine` used to connect to your sqlite database.
 
-* Use SQLAlchemy `create_engine` to connect to your sqlite database.
+* SQLAlchemy `automap_base()` used to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
 
-* Use SQLAlchemy `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
+* Python linked to the database by creating SQLAlchemy session.
 
-* Link Python to the database by creating an SQLAlchemy session.
-
-* **Important** Don't forget to close out your session at the end of your notebook.
+* Closed out session at the end of jupyter notebook.
 
 ### Precipitation Analysis
 
-* Start by finding the most recent date in the data set.
+* Most recent date in the data set: 2017-08-23
 
-* Using this date, retrieve the last 12 months of precipitation data by querying the 12 preceding months of data. **Note** you do not pass in the date as a variable to your query.
+* Retrieved the last 12 months of precipitation data by querying the 12 preceding months of data. From: 2016-08-23 to 2017-08-23
 
-* Select only the `date` and `prcp` values.
+* Selected only the `date` and `prcp` values.
 
-* Load the query results into a Pandas DataFrame and set the index to the date column.
+* Loaded the query results into a Pandas DataFrame and set the index to the date column.
 
-* Sort the DataFrame values by `date`.
+* Sorted the DataFrame values by `date`.
 
-* Plot the results using the DataFrame `plot` method.
+* Ploted the results using the DataFrame `plot` method.
 
   ![precipitation](Images/figure1_dailyprecipitation_bar.png)
 
-* Use Pandas to print the summary statistics for the precipitation data.
+* Used Pandas to print the summary statistics for the precipitation data.
+
+  ![stats description](Images/figure2_description.png)
 
 ### Station Analysis
 
@@ -43,32 +43,37 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 * Design a query to find the most active stations (i.e. which stations have the most rows?).
 
   * List the stations and observation counts in descending order.
+    
+    ![station counts](Images/figure4_stationcounts.png)
 
-  * Which station id has the highest number of observations?
+  * Which station id has the highest number of observations? 
+    - USC00519281	WAIHEE 837.5, HI US (Count: 2772)
 
-  * Using the most active station id, calculate the lowest, highest, and average temperature.
+  * Using the most active station id, calculate the lowest, highest, and average temperature. (functions `func.min`, `func.max`, `func.avg`, and `func.count` used to find min, max and average.)
 
-  * Hint: You will need to use a function such as `func.min`, `func.max`, `func.avg`, and `func.count` in your queries.
+    - Lowest temperature: 54.0 F
+    - Highest temperature: 85.0 F
+    - Average temperature: 71.7 F  
 
-* Design a query to retrieve the last 12 months of temperature observation data (TOBS).
+* Designed a query to retrieve the last 12 months of temperature observation data (TOBS).
 
-  * Filter by the station with the highest number of observations.
+  * Filtered by the station with the highest number of observations.
 
-  * Query the last 12 months of temperature observation data for this station.
+  * Queried the last 12 months of temperature observation data for this station.
 
-  * Plot the results as a histogram with `bins=12`.
+  * Ploted the results as a histogram with `bins=12`.
 
     ![station-histogram](Images/figure3_temperature_hist.png)
 
-* Close out your session.
+* Session closed out.
 
 - - -
 
 ## Step 2 - Climate App
 
-Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
+With the initial analysis completed, designed a Flask API based on the queries from the previous sections.
 
-* Use Flask to create your routes.
+* Used Flask to create routes.
 
 ### Routes
 
@@ -76,30 +81,30 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * Home page.
 
-  * List all routes that are available.
+  * Listed all routes that are available.
 
 * `/api/v1.0/precipitation`
 
-  * Convert the query results to a dictionary using `date` as the key and `prcp` as the value.
+  * Converted the query results to a dictionary using `date` as the key and `prcp` as the value.
 
-  * Return the JSON representation of your dictionary.
+  * Returned the JSON representation of your dictionary.
 
 * `/api/v1.0/stations`
 
-  * Return a JSON list of stations from the dataset.
+  * Returned a JSON list of stations from the dataset.
 
 * `/api/v1.0/tobs`
-  * Query the dates and temperature observations of the most active station for the last year of data.
+  * Queried the dates and temperature observations of the most active station for the last year of data.
 
-  * Return a JSON list of temperature observations (TOBS) for the previous year.
+  * Returned a JSON list of temperature observations (TOBS) for the previous year.
 
 * `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
 
-  * Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
+  * Returned a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
 
-  * When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
+  * When given the start only, calculated `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
 
-  * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
+  * When given the start and the end date, calculated the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
 
 ## Hints
 
@@ -111,9 +116,7 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
 ## Bonus: Other Recommended Analyses
 
-* The following are optional challenge queries. These are highly recommended to attempt, but not required for the homework.
-
-* Use the provided [temp_analysis_bonus_1_starter.ipynb](temp_analysis_bonus_1_starter.ipynb) and [temp_analysis_bonus_1_starter](temp_analysis_bonus_2_starter.ipynb) starter notebooks for each bonus challenge.
+* The following are bonus challenges
 
 ### Temperature Analysis I
 
@@ -121,15 +124,16 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
 * Use pandas to perform this portion.
 
-  * Convert the date column format from string to datetime.
-
-  * Set the date column as the DataFrame index
-
-  * Drop the date column
-
 * Identify the average temperature in June at all stations across all available years in the dataset. Do the same for December temperature.
 
+![June vs December Temperatures](Images/figure6_temp_analysis_dec_jun.png)  
+
 * Use the t-test to determine whether the difference in the means, if any, is statistically significant. Will you use a paired t-test, or an unpaired t-test? Why?
+
+  - Ttest_indResult(statistic=31.60372399000329, pvalue=3.9025129038616655e-191)
+
+![June vs December Temperatures](Images/figure5_temp_analysis.png)  
+
 
 ### Temperature Analysis II
 
