@@ -114,10 +114,6 @@ With the initial analysis completed, designed a Flask API based on the queries f
 
 - - -
 
-## Bonus: Other Recommended Analyses
-
-* The following are bonus challenges
-
 ### Temperature Analysis I
 
 * Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
@@ -149,19 +145,19 @@ With the initial analysis completed, designed a Flask API based on the queries f
 
 * You are looking to take a trip from August first to August seventh of this year, but are worried that the weather will be less than ideal. Using historical data in the dataset find out what the temperature has previously looked like.
 
-* The starter notebook contains a function called `calc_temps` that will accept a start date and end date in the format `%Y-%m-%d`. The function will return the minimum, average, and maximum temperatures for that range of dates.
+* temp_analysis_bonus1 notebook contains a function called `calc_temps` that will accept a start date and end date in the format `%Y-%m-%d`. The function will return the minimum, average, and maximum temperatures for that range of dates.
 
-* Use the `calc_temps` function to calculate the min, avg, and max temperatures for your trip using the matching dates from a previous year (i.e., use "2017-08-01").
+* `calc_temps` function was used to calculate the min, avg, and max temperatures for your trip using the matching dates from a previous year (i.e., use "2017-08-01").
 
-* Plot the min, avg, and max temperature from your previous query as a bar chart.
+* Plotted the min, avg, and max temperature from your previous query as a bar chart.
 
-  * Use "Trip Avg Temp" as the title.
+  * Plot title "Trip Avg Temp"
 
-  * Use the average temperature as the bar height (y value).
+  * Used the average temperature as the bar height (y value).
 
-  * Use the peak-to-peak (TMAX-TMIN) value as the y error bar (YERR).
+  * Used the peak-to-peak (TMAX-TMIN) value as the y error bar (YERR).
 
-    ![temperature](Images/temperature.png)
+    ![temperature](Images/figure7_tripavgtemp.png)
 
 ### Daily Rainfall Average
 
@@ -188,5 +184,3 @@ With the initial analysis completed, designed a Flask API based on the queries f
   ![daily-normals](Images/daily-normals.png)
 
 * Close out your session.
-
-### Copyright
