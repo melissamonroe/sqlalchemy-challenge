@@ -131,10 +131,20 @@ With the initial analysis completed, designed a Flask API based on the queries f
 * Use the t-test to determine whether the difference in the means, if any, is statistically significant. Will you use a paired t-test, or an unpaired t-test? Why?
 
   - Ttest_indResult(statistic=31.60372399000329, pvalue=3.9025129038616655e-191)
-
-![June vs December Temperatures](Images/figure5_temp_analysis.png)  
-
-
+  - Note: Unpaired t-test was used because the sample sizes of the temperatures were unequal. The dataset has more June measurements than December measurments. Got ValueError: unequal length arrays when attempting to run paired (stats.ttest_rel). I ended up running stats.ttest_ind unpaired t-test. 
+  
+    1. An Independent Samples t-test compares the means for two groups
+    2. A Paired sample t-test compares means from the same group at different times.
+    
+  Null hypothesis: The average temperatures in June and December are the same.
+  Alternate hypothosis: The average temperatures in June and December are different.
+  
+  A p-value close to zero signals that your null hypothesis is false, and typically that a difference is very likely to exist. Large p-values closer to 1 imply that there is no detectable difference for the sample size used.
+  
+  The pvalue calculated by the t-test returned 3.9025129038616655e-191 (less and 0.05 and very close to zero). We can reject our null hypothesis and accept our alternate hypothesis that the average temperatures in June and December are different.
+  
+  ![June vs December Temperatures](Images/figure5_temp_analysis.png)  
+    
 ### Temperature Analysis II
 
 * You are looking to take a trip from August first to August seventh of this year, but are worried that the weather will be less than ideal. Using historical data in the dataset find out what the temperature has previously looked like.
@@ -180,5 +190,3 @@ With the initial analysis completed, designed a Flask API based on the queries f
 * Close out your session.
 
 ### Copyright
-
-Trilogy Education Services © 2020. All Rights Reserved.
